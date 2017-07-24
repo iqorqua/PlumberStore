@@ -1,0 +1,299 @@
+﻿ {% load staticfiles %}
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Methods - fullPage.js</title>
+	<meta name="author" content="Alvaro Trigo Lopez" />
+	<meta name="description" content="fullPage methods demo." />
+	<meta name="keywords"  content="fullpage,jquery,methods,callbacks,demo" />
+	<meta name="Resource-type" content="Document" />
+
+     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,700&amp;subset=cyrillic-ext,greek-ext,latin-ext" rel="stylesheet">
+
+	<link rel="stylesheet" type="text/css" href="{% static 'app/content/jquery.fullPage.css'%}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'app/content/examples.css'%}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'app/content/style.css'%}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'app/content/bootstrap.css'%}" />
+
+	<!--[if IE]>
+		<script type="text/javascript">
+			 var console = { log: function() {} };
+		</script>
+	<![endif]-->
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+
+	<script type="text/javascript" src="{% static 'app/scripts/scrolloverflow.js'%}"></script>
+	<script type="text/javascript" src="{% static 'app/scripts/bootstrap.js'%}"></script>
+	<script type="text/javascript" src="{% static 'app/scripts/jquery.fullPage.js'%}"></script>
+	<script type="text/javascript" src="{% static 'app/scripts/examples.js'%}"></script>
+	<script type="text/javascript" src="{% static 'app/scripts/wow.js'%}"></script>
+	<script type="text/javascript">
+	 $(document).ready(function() {
+
+			function initialization(){
+				$('#myContainer').fullpage({
+					sectionsColor: ['#d2d2d2', '#4BBFC3', '#7BAABE', '#1b1a1a', '#ccddff'],
+					anchors: ['firstPage', 'secondPage', '3rdPage', '4thpage', 'lastPage'],
+					resize: false,
+					animateAnchor:false,
+					scrollOverflow: true,
+					autoScrolling:true,
+					responsive: 900,
+					fitSection: false,
+					menu: '#menu',
+					navigation:true,
+					continuousVertical:true,
+					paddingTop: '20px',
+					css3: true,
+					onLeave: function(index, nextIndex, direction){
+						console.log("onLeave--" + "index: " + index + " nextIndex: " + nextIndex + " direction: " +  direction);
+					},
+					afterLoad: function(anchorLink, index){
+						console.log("afterLoad--" + "anchorLink: " + anchorLink + " index: " + index );
+					},
+					afterSlideLoad: function(anchorLink, index, slideAnchor, slideIndex){
+						console.log("afterSlideLoad--" + "anchorLink: " + anchorLink + " index: " + index + " slideAnchor: " + slideAnchor + " slideIndex: " + slideIndex);
+					},
+					onSlideLeave: function(anchorLink, index, slideIndex, direction){
+						console.log("onSlideLeave--" + "anchorLink: " + anchorLink + " index: " + index + " slideIndex: " + slideIndex + " direction: " + direction);
+					},
+					afterRender: function(){
+						console.log("afterRender");
+					},
+					afterResize: function(){
+						console.log("afterResize");
+					}
+				});
+			}
+
+			//fullPage.js initialization
+			initialization();
+
+
+			$('#moveSectionUp').click(function(e){
+				e.preventDefault();
+				$.fn.fullpage.moveSectionUp();
+			});
+
+			$('#moveSectionDown').click(function(e){
+				e.preventDefault();
+				$.fn.fullpage.moveSectionDown();
+			});
+
+			$('#moveTo').click(function(e){
+				e.preventDefault();
+				$.fn.fullpage.moveTo(2, 3);
+			});
+
+			$('#silentMoveTo').click(function(e){
+				e.preventDefault();
+				$.fn.fullpage.silentMoveTo(2);
+			});
+
+			$('#silentMoveToSlide').click(function(e){
+				e.preventDefault();
+				$.fn.fullpage.silentMoveTo(2, 3);
+			});
+
+			$('#moveSlideRight').click(function(e){
+				e.preventDefault();
+				$.fn.fullpage.moveSlideRight();
+			});
+
+			$('#moveSlideLeft').click(function(e){
+				e.preventDefault();
+				$.fn.fullpage.moveSlideLeft();
+			});
+
+			$('#setAutoScrollingFalse').click(function(e){
+				e.preventDefault();
+				$.fn.fullpage.setAutoScrolling(false);
+			});
+
+			$('#setAutoScrollingTrue').click(function(e){
+				e.preventDefault();
+				$.fn.fullpage.setAutoScrolling(true);
+			});
+
+			$('#setAllowScrollingFalse').click(function(e){
+				e.preventDefault();
+				$.fn.fullpage.setAllowScrolling(false);
+			});
+
+			$('#setAllowScrollingTrue').click(function(e){
+				e.preventDefault();
+				$.fn.fullpage.setAllowScrolling(true);
+			});
+
+			$('#setKeyboardScrollingFalse').click(function(e){
+				e.preventDefault();
+				$.fn.fullpage.setKeyboardScrolling(false);
+			});
+
+			$('#setKeyboardScrollingTrue').click(function(e){
+				e.preventDefault();
+				$.fn.fullpage.setKeyboardScrolling(true);
+			});
+
+			$('#setScrollingSpeed1500').click(function(e){
+				e.preventDefault();
+				$.fn.fullpage.setScrollingSpeed(2500);
+			});
+
+			$('#setScrollingSpeed700').click(function(e){
+				e.preventDefault();
+				$.fn.fullpage.setScrollingSpeed(700);
+			});
+
+			$('#destroy').click(function(e){
+				e.preventDefault();
+				$.fn.fullpage.destroy('all');
+			});
+
+			$('#undestroy').click(function(e){
+				e.preventDefault();
+
+				//fullPage.js initialization
+				initialization();
+			});
+
+			$('#reBuild').click(function(e){
+				e.preventDefault();
+				$.fn.fullpage.reBuild();
+			});
+
+			$('#setLockAnchorsTrue').click(function(e){
+				e.preventDefault;
+				$.fn.fullpage.setLockAnchors(true);
+			});
+
+			$('#setLockAnchorsFalse').click(function(e){
+				e.preventDefault;
+				$.fn.fullpage.setLockAnchors(false);
+			});
+		});
+	</script>
+
+	<style>
+		#actions{
+			position:fixed;
+			top: 73px;
+			left: 30px;
+			z-index: 99999;
+		}
+		#actions a{
+			background: rgba(0,0,0,0.8);
+			padding: 7px;
+			margin: 2px;
+			color: #ccc;
+			display: inline-block;
+		}
+		#actions a:hover{
+			color: #fff;
+			background: #81A140;
+		}
+
+		/* Overwriting styles for control arrows for slides
+		* --------------------------------------- */
+		.fp-controlArrow.fp-prev {
+			left: 50px;
+		}
+		.fp-controlArrow.fp-next{
+			right: 50px;
+		}
+	</style>
+
+</head>
+<body>
+
+
+<ul id="menu">
+	<li data-menuanchor="firstPage"><a href="#firstPage">Главная страница</a></li>
+	<li data-menuanchor="secondPage"><a href="#secondPage">Ассортимент</a></li>
+	<li data-menuanchor="3rdPage"><a href="#3rdPage">Контакты</a></li>
+	<li data-menuanchor="4thpage"><a href="#4thpage">Отзывы</a></li>
+</ul>
+<div id="myContainer">
+
+	<div class="section" id="section0" style="background:url({% static 'app/img/bg-banner03.jpg'%}); background-color: white; background-size: cover;">
+        <div class="section-padding wow fadeIn delay-05s animated">
+			<div class="banner-text" style="margin-left:60px; margin-top:90px; text-align:left; color: black;">
+                <h2 style="color: black;">Рады Вас приветствовать</h2>
+                <p style="color: black;"> на сайте магазина</p>
+                <p style="font-weight:700;">Name</p>
+              </div>
+		</div>
+    </div>
+	<div class="section" id="section1">
+		<!--div class="slide"><h1>Section 2</h1></!--div>
+		<div class="slide"><div class="wrap"><h1>Slide 2.1</h1></div></div>
+		<div class="slide"><h1>Slide 2.2</h1></div>
+		<div class="slide"><h1>Slide 2.3</h1></div-->
+        {% for good in goods %}
+            <div class="slide">
+                <div class="row">
+                    <div class="col-md-8 ">
+                        <img src="{{good.image.url}}" style="width:inherit" />
+                    </div>
+                    <div class="col-md-4 col-md-offset-7">
+                        <h3>{{good.good_name}}</h3>
+                        <h5>{{good.description}}</h5>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+	</div>
+	<div class="section" id="section2"><h1>Section 3</h1></div>
+	<div class="section" style="background-color:dimgrey" id="section3" >
+        <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="contact-sec text-center">
+            <h2>Хотите оставить отзыв?</h2>
+            <p>Для этого - заполните форму. Нам необходимо знать Ваше мнение!</p>
+          </div>
+        </div>
+        
+        <div class="col-md-8 col-md-push-2">
+            <div id="sendmessage">Вашо отзыв принят. Спаибо!</div>
+            <div id="errormessage"></div>
+            <form action="" method="post" role="form" class="contactForm">
+                {% csrf_token %}
+                <div class="form-group">
+                    <input type="text" name="name" class="form-control" id="name" placeholder="Ваше имя" data-rule="minlen:4" data-msg="Введите не менее 4 символов" />
+                    <div class="validation"></div>
+                </div>
+                <div class="form-group">
+                    <input type="email" class="form-control" name="email" id="email" placeholder="Ваш Email" data-rule="email" data-msg="Введите корректный адрес" />
+                    <div class="validation"></div>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="subject" id="subject" placeholder="Тема" data-rule="minlen:4" data-msg="Введите не менее 4 символов" />
+                    <div class="validation"></div>
+                </div>
+                <div class="form-group">
+                    <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Отзыв"></textarea>
+                    <div class="validation"></div>
+                </div>
+                
+                <div class="text-center"><button type="submit" class="btn btn-primary btn-lg">Оставить отзыв</button></div>
+            </form>
+        </div>
+        
+      </div>
+    </div>
+    </div>
+</div>
+
+</body>
+</html>
+
+
+  
+	   
+ 
+   
